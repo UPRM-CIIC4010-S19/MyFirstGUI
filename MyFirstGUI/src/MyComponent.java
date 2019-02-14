@@ -1,6 +1,6 @@
+import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.util.Random;
 
 import javax.swing.JComponent;
 
@@ -10,15 +10,23 @@ public class MyComponent extends JComponent {
 
 	public void paintComponent(Graphics g) {
 		
-		Graphics2D g2 = (Graphics2D) g;
+		Car topLeftCar = new Car(0,0,Color.RED);
+		topLeftCar.draw(g);
+
+		Car bottomRightCar = new Car(this.getWidth()-60, this.getHeight()-30);
+		bottomRightCar.draw(g);
 		
-		Rectangle body = new Rectangle(10,20, 60, 10);
-		
-		g2.draw(body);
+		Random genRandom = new Random();
+		int randomX = genRandom.nextInt(this.getWidth() - 60);
+		int randomY = genRandom.nextInt(this.getHeight() - 30);
+		Car randomCar = new Car(randomX, randomY, Color.MAGENTA);
+		randomCar.draw(g);
 		
 		counter++;
 		System.out.println("paintComponent called " + counter + " times");
 		
 	}
+	
+
 	
 }
