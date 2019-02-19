@@ -7,13 +7,19 @@ import javax.swing.JComponent;
 public class MyComponent extends JComponent {
 	
 	private static int counter = 0;
-
+	
+	private Car topLeftCar = new Car(0,0,Color.RED);
+	private Car bottomRightCar = new Car(0, 0);
+	
 	public void paintComponent(Graphics g) {
 		
-		Car topLeftCar = new Car(0,0,Color.RED);
+		//topLeftCar = new Car(0,0,Color.RED);
 		topLeftCar.draw(g);
 
-		Car bottomRightCar = new Car(this.getWidth()-60, this.getHeight()-30);
+		
+		//bottomRightCar = new Car(this.getWidth()-60, this.getHeight()-30);
+		bottomRightCar.setxPos(this.getWidth()-60);
+		bottomRightCar.setyPos(this.getHeight()-30);
 		bottomRightCar.draw(g);
 		
 		Random genRandom = new Random();
