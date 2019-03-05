@@ -8,9 +8,22 @@ public class MyComponent extends JComponent {
 
 	private static int counter = 0;
 
-	private Car theCar = new Car(0,0,Color.RED,1 ,5);
+	private Car[] theCars;
+	private int numCars;
+	
+	private Random genDistance = new Random();
 
 	private static final int LANE_HEIGHT = 40;
+
+	public MyComponent(int numCars) {
+
+		theCars = new Car[numCars];
+		int lane = 0;
+		for (int i=0; i<numCars; i++) {
+			theCars[i] = new Car(0, lane, Color.cyan);
+			lane += theCars[i].getHeight() + 10;
+		}
+	}
 
 	private boolean reachedRightEdge(Car c) {
 		return c.getxPos()+c.getWidth() >= this.getWidth();
@@ -27,12 +40,14 @@ public class MyComponent extends JComponent {
 	public void paintComponent(Graphics g) {
 
 		//topLeftCar = new Car(0,0,Color.RED);
-		int deltax = theCar.getSpeed() * theCar.getDirection();
-		theCar.move(deltax, 0);
-		if (reachedEdge(theCar)) {
-			theCar.setDirection(-theCar.getDirection());
+		for (int i=0; i<theCars.length; i++) {
+			int deltax = genDistance.nextInt(theCars[i].getSpeed()) * theCars[i].getDirection();
+			theCars[i].move(deltax, 0);
+			if (reachedEdge(theCars[i])) {
+				theCars[i].setDirection(-theCars[i].getDirection());
+			}
+			theCars[i].draw(g);
 		}
-		theCar.draw(g);
 
 		counter++;
 		System.out.println("paintComponent called " + counter + " times");

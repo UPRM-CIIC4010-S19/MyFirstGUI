@@ -63,6 +63,10 @@ public class Car {
 		return 60;
 	}
 
+	public int getHeight() {
+		return 30;
+	}
+
 	public void setxPos(int xPos) {
 		this.xPos = xPos;
 	}
