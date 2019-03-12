@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Main {
 
@@ -6,16 +7,18 @@ public class Main {
 			
 			JFrame mainFrame = new JFrame("My First GUI");
 			mainFrame.setSize(600, 800);
-			MyComponent myComponent = new MyComponent(10);
-			mainFrame.add(myComponent);
+			RaceStage myRace = new RaceStage(10);
+			mainFrame.add(myRace);
 			mainFrame.setVisible(true);
 			
-			while(true) {
+			while(!myRace.someCarReachedRightEdge()) {
 				
 				mainFrame.repaint();
 				Thread.sleep(50);
 				
 			}
+			
+			JOptionPane.showMessageDialog(mainFrame, "Race Finished!!");
 			
 		}
 	

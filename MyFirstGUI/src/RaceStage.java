@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.swing.JComponent;
 
-public class MyComponent extends JComponent {
+public class RaceStage extends JComponent {
 
 	private static int counter = 0;
 
@@ -15,7 +15,7 @@ public class MyComponent extends JComponent {
 
 	private static final int LANE_HEIGHT = 40;
 
-	public MyComponent(int numCars) {
+	public RaceStage(int numCars) {
 
 		theCars = new Car[numCars];
 		int lane = 0;
@@ -23,6 +23,7 @@ public class MyComponent extends JComponent {
 			theCars[i] = new Car(0, lane, Color.cyan);
 			lane += theCars[i].getHeight() + 10;
 		}
+		this.numCars = numCars;
 	}
 
 	private boolean reachedRightEdge(Car c) {
@@ -52,6 +53,15 @@ public class MyComponent extends JComponent {
 		counter++;
 		System.out.println("paintComponent called " + counter + " times");
 
+	}
+	
+	public boolean someCarReachedRightEdge() {
+		for (int i=0; i<numCars; i++) {
+			if (this.reachedRightEdge(theCars[i])) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 
