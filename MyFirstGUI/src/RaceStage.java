@@ -20,7 +20,12 @@ public class RaceStage extends JComponent {
 		theCars = new Car[numCars];
 		int lane = 0;
 		for (int i=0; i<numCars; i++) {
-			theCars[i] = new Car(0, lane, Color.cyan);
+			if (i % 2 == 0) {
+				theCars[i] = new PoliceCar(0, lane, Color.BLACK);
+			}
+			else {
+				theCars[i] = new Car(0, lane, Color.cyan);
+			}
 			lane += theCars[i].getHeight() + 10;
 		}
 		this.numCars = numCars;
