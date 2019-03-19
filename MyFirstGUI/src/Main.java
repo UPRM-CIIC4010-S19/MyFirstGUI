@@ -7,7 +7,7 @@ public class Main {
 			
 			JFrame mainFrame = new JFrame("My First GUI");
 			mainFrame.setSize(600, 800);
-			RaceStage myRace = new RaceStage(10);
+			RaceStage myRace = new RaceStage(12);
 			mainFrame.add(myRace);
 			mainFrame.setVisible(true);
 			

@@ -8,7 +8,7 @@ public class RaceStage extends JComponent {
 
 	private static int counter = 0;
 
-	private Car[] theCars;
+	private Vehicle[] theCars;
 	private int numCars;
 	
 	private Random genDistance = new Random();
@@ -17,29 +17,32 @@ public class RaceStage extends JComponent {
 
 	public RaceStage(int numCars) {
 
-		theCars = new Car[numCars];
+		theCars = new Vehicle[numCars];
 		int lane = 0;
 		for (int i=0; i<numCars; i++) {
-			if (i % 2 == 0) {
+			if (i % 3 == 0) {
 				theCars[i] = new PoliceCar(0, lane, Color.BLACK);
 			}
-			else {
+			else if (i % 3 == 1) {
 				theCars[i] = new Car(0, lane, Color.cyan);
+			}
+			else {
+				theCars[i] = new Truck(0, lane, Color.cyan);
 			}
 			lane += theCars[i].getHeight() + 10;
 		}
 		this.numCars = numCars;
 	}
 
-	private boolean reachedRightEdge(Car c) {
+	private boolean reachedRightEdge(Vehicle c) {
 		return c.getxPos()+c.getWidth() >= this.getWidth();
 	}
 
-	private boolean reachedLeftEdge(Car c) {
+	private boolean reachedLeftEdge(Vehicle c) {
 		return c.getxPos() <= 0;
 	}
 
-	private boolean reachedEdge(Car c) {
+	private boolean reachedEdge(Vehicle c) {
 		return reachedLeftEdge(c) || reachedRightEdge(c);
 	}
 
